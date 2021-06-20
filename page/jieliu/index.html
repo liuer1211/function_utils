@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="applicable-device" content="pc,mobile">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2">
+</head>
+<body>
+    <div>
+        节流
+    </div>
+    <script type="text/javascript" >
+        // 回调函数
+        function a(callback) {
+            console.log('----');
+            setTimeout(()=>{
+                console.log("=====")
+            },100);
+            callback();
+        }
+        function b() {
+            console.log('hello callback');
+        }
+        a(b); // 注意 b() 作为参数传递给 a() 的时候是不需要带括号的
+
+
+    </script>
+</body>
+</html>

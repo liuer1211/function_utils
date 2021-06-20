@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="applicable-device" content="pc,mobile">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2">
+</head>
+<body>
+    <div>
+        call
+    </div>
+    <script type="text/javascript" >
+        // apply 和 call 的区别是 call 方法接受的是若干个参数列表，而 apply 接收的是一个包含多个参数的数组。
+        // fun.call(thisArg[, arg1[, arg2[, ...]]])
+        var a = {
+            name : "Cherry",
+            fn : function (a,b) {
+                console.log( a + b)
+            },
+        }
+        var b = a.fn;
+        b.call(a,1,2)       // 3
+
+
+        // 1.定义函数 call
+        function call(Fn,obj,...args){
+            // 判断
+            if(obj=== undefined || obj===null){
+                obj = globalThis; // 全局对象
+            }
+            // 为obj 添加临时方法
+            obj.temp=Fn;
+            // 调用temp 方法
+            let result = obj.temp(...args)
+            // 删除temp 方法
+            delete obj.temp;
+            return result;
+        }
+        // 2.使用call
+        // 声明一个函数
+        function add (a,b) {
+            console.log(this); // {c: 521, temp: ƒ}  ;  Window
+            return a+b+this.c
+        }
+        // 声明一个对象
+        let obj={
+            c: 521
+        }
+        // 添加全局属性
+        window.c=1314;
+        // 执行call函数
+        console.log(call(add, obj, 10, 20)); // {c: 521, temp: ƒ} 551
+        console.log(call(add, null, 10, 20)); // Window 1344
+
+
+
+
+    </script>
+</body>
+</html>
