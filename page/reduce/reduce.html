@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="applicable-device" content="pc,mobile">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2">
+</head>
+<body>
+    <div>
+        reduce
+    </div>
+
+    <!-- 直接使用 -->
+    <script type="text/javascript" >
+        // reduce() 方法接收一个函数作为累加器，数组中的每个值（从左到右）开始缩减，最终计算为一个值。
+        // reduce() 可以作为一个高阶函数，用于函数的 compose。
+        // 注意: reduce() 对于空数组是不会执行回调函数的。
+        let numbers = [1, 2, 3, 4]
+        let num = numbers.reduce(
+            (res,val)=>{
+                return res+val 
+            }, 0
+        ); // 函数 和 初始值   res=0,val=1; res=1,val=2; res=3,val=3; res=6,val=4; 返回 10；
+        console.log(num)
+    </script>
+
+    <!-- 自己手写 -->
+    <script type="text/javascript" >
+        // 自定义函数
+        function reduce(arr, callback, initValue) {
+            // 定义返回结果值
+            let result = initValue
+            // 遍历
+            for (let i=0;i<arr.length;i++) {
+                result = callback(result, arr[i]) // 传递每一次暂存的值 和 当前数组值
+            }
+            // 返回最终值
+            return result
+        }
+        // 使用
+        let arr = [1,2,3,4]
+        let result = reduce(arr, (res,val)=>{
+            return res+val
+        } ,0);
+        console.log(result)
+    </script>
+
+</body>
+</html>

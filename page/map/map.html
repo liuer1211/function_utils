@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="applicable-device" content="pc,mobile">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2">
+</head>
+<body>
+    <div>
+        map
+    </div>
+
+    <!-- 直接使用map -->
+    <script type="text/javascript" >
+        // map 方法返回一个新数组，数组中的元素为原数组调用函数后的值
+        // 注意： map() 不会对空数组进行检测。
+        // 注意： map() 不会改变原始数组。
+        let arr = [
+            { name: "jack", age: 28 },
+            { name: "jack", age: 28 }
+        ]
+        let arr1 = arr.map((item, index)=>{
+            return item.age + 1
+        })
+        let arr2 = arr.map((item, index)=>{
+            // item.age = item.age+1
+            item.age += 1
+            return item
+        })
+        let arr3 = arr.map((item, index)=>{
+            item.type = false
+            return item
+        })
+        console.log(arr)
+        console.log(arr1)
+        console.log(arr2)
+        console.log(arr3)
+    </script>
+
+    <!-- 自己手写map -->
+    <script type="text/javascript" >
+        // 定义一个map函数 -- 原数组每一个值*10，返回一个新数组
+        function map(arr, callback) {
+            // 定义一个数组
+            let result = []
+            // 遍历数组
+            for( let i=0;i<arr.length;i++){
+                // 执行回调函数
+                let a = callback(arr[i],i)
+                // 回调函数 返回结果，存入数组里边，然后返回
+                result.push(a) // 此处可以写到一起 result.push(callback(arr[i],i))
+            }
+            return result;
+        }
+        // 使用map
+        let array = [1,2,3,4]
+        let array1 = map(array,(item,index)=>{
+            return item * 10
+        })
+        console.log(array1);
+    </script>
+
+</body>
+</html>
