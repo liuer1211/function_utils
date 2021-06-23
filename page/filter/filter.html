@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="applicable-device" content="pc,mobile">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2">
+</head>
+<body>
+    <div>
+        filter
+    </div>
+
+    <!-- 原始函数 -->
+    <script type="text/javascript" >
+        // filter() 方法创建一个新的数组，新数组中的元素是通过检查指定数组中符合条件的所有元素。
+        // 注意： filter() 不会对空数组进行检测。
+        // 注意： filter() 不会改变原始数组。
+        let arr = [1,2,3,4];
+        let arr1 = arr.filter((item)=>{
+            return item % 2 === 1; // 返回所有奇数
+        })
+        console.log(arr1);
+    </script>
+
+    <!-- 自定义 -->
+    <script type="text/javascript" >
+        let array = [4,5,6];
+        let array1 = filter(array, item => item % 2 === 1);
+        console.log(array1);
+
+        // 定义
+        function filter(array, callback) {
+            let res = [];
+            for(let i=0;i<array.length;i++){
+                // 遍历，执行回调函数
+                let flag = callback(array[i], i);
+                // 为true，则压入数组
+                if (flag) {
+                    res.push(array[i]);
+                }
+            }
+            return res;
+        }
+    </script>
+</body>
+</html>
