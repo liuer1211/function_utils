@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="applicable-device" content="pc,mobile">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2">
+</head>
+<body>
+    <div id="app">箭头函数</div>
+    <div id="root">箭头函数</div>
+    
+    <script type="text/javascript" >
+        // 作用：定义匿名函数
+        // 语法：
+        // 1.1 无参：         () => console.log("箭头函数")
+        // 1.2 一个参数：      i => i+2 
+        // 1.3 大于一个参数：  (i,j) => i+j
+        // 2.1 函数体不用大括号，默认返回结果。【上面三个都是】
+        // 2.2 函数体有多个语句，需要大括号包围；若有返回， 需要手动返回
+        // 特点：简洁
+        // 1. 箭头函数没有自己的this,它的this是在定义的时候，处在的对象就是它的this
+        // 2. this区分，看外层是否有函数；
+        //    有：外层this就是内部箭头函数的this
+        //    没有： this就是window
+
+        // 练习
+        // 左侧 - 形参
+        // 无参
+        let fun1 = () => console.log("箭头函数");
+        fun1();
+        // 一个参数
+        let fun2 = i => console.log("箭头函数=",i);
+        fun2('a')
+        // 多个函数
+        let fun3 = (i,j) => console.log("箭头函数=",i,j);
+        fun3('a',0)
+
+        // 右侧 - 函数体
+        // 一条语句 或 表达式
+        let fun4 = () => console.log("箭头函数");
+        let fun5 = (i, j) => i+j;
+        fun4()
+        console.log(fun5(9,8)) // 自动返回 17
+        // 多语句或表达式
+        let fun6 = (i, j) => {
+            console.log("----执行---");
+            return i+j; // 不写return 只打印，不返回结果
+        }
+        console.log(fun6(9,8))
+
+        // 箭头函数的this
+        let div1 = document.getElementById("app");
+        let div2 = document.getElementById("root");
+
+        div1.onclick = function() {
+            console.log(this);       // <div id="app">箭头函数</div>
+        }
+
+        // ---------------
+        div2.onclick = () => {
+            console.log(this);      // Window ...
+        }
+
+        // -----------换成这个时-----
+        let obj = {
+            name: '箭头函数',
+            getName: function() {
+                div2.onclick = () => {
+                    console.log(this)     // obj函数体
+                }
+            }
+        }
+        obj.getName()
+
+        // -----------换成这个时-----
+        let obj1 = {
+            name: '箭头函数',
+            getName: () => {
+                div2.onclick = () => {
+                    console.log(this)     // Window ...
+                }
+            }
+        }
+        obj1.getName()
+
+
+        // 匿名函数：没有实际名字的函数。
+        // 匿名函数有两种用法：
+        // 赋值
+        // 自我执行
+        // 1.声明一个匿名函数，直接赋值给某一个事件
+        window.onload = function(){
+            console.log('--hello');
+        };
+        
+        // 2.使用匿名函数表达式。将匿名函数，赋值给一个变量。
+        // 声明：var func=function(){ }
+        // 调用：func();
+        let show = function(){
+            console.log('hello--');
+        };
+        show();
+
+        // 使用推荐
+        (function (){
+            //此时会输出a
+            console.log("a");
+        }())
+
+    </script>
+
+</body>
+</html>

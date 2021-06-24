@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="applicable-device" content="pc,mobile">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2">
+</head>
+<body>
+
+    <div id="app">clone</div>
+    
+    <script type="text/javascript" >
+        // 字符串
+        let str = "a"
+        let str1 = str
+        console.log(str1) // a
+        str1 = "b"
+        console.log(str) // a ------不变
+        
+
+        // 复制对象，只是复制了引用 - 数字也是
+        // 第一个定义 在一个栈里  实际位置在堆里
+        // 第二次定义 在另一个栈里  实际和第一个共用一个堆 
+        let obj = { name: 'jack' };
+        let obj1 = obj;
+        console.log(obj1); // { name: "jack" }
+        obj1.name = 'tom';
+        console.log(obj.name); // tom ------改变
+
+
+
+    </script>
+
+</body>
+</html>
