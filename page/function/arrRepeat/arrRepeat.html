@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="applicable-device" content="pc,mobile">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2">
+</head>
+<body>
+    <div>
+        数组去重
+    </div>
+
+    <script type="text/javascript" >
+        /*数组去重
+            1. forEach + indexOf
+            2. forEach + 对象容器
+            3. es6语法：... + Set
+        */
+
+        // 1. forEach + indexOf（ie9,+）  -- 双重遍历，效率低
+        let arr = [1,2,3,4,3,2,5];
+        function unique1(array) {
+            // 初始一个空数组，充当结果
+            let res = [];
+            array.forEach(element => {
+                // 新数组里没有传入的数组中的值，就加入
+                if (res.indexOf(element) === -1) {
+                    res.push(element);
+                }
+            });
+            return res;
+        }
+        console.log(unique1(arr));
+
+        // 2. forEach + 对象容器 -- 遍历一次，效率高
+        function unique2(array) {
+            // 定义返回的去重后数组
+            let res = [];
+            // 数组内容，作为对象的key值，判断是否重复
+            let obj = {};
+            array.forEach(item => {
+                if (obj[item] === undefined) { // 还没有key值
+                    obj[item] = true;  // 赋值
+                    res.push(item);         // 存入新数组
+                }
+            });
+            return res;
+        }
+        console.log(unique2(arr));
+        
+        let arr1 = [
+            {name: "123"},
+            {name: "123"},
+            {name: "456"}
+        ]
+        function unique3(array) {
+            // 定义返回的去重后数组
+            let res = [];
+            // 数组内容，作为对象的key值，判断是否重复
+            let obj = {};
+            array.forEach(item => {
+                if (obj[item.name] === undefined) { // 还没有key值
+                    obj[item.name] = true;  // 赋值
+                    res.push(item);         // 存入新数组
+                }
+            });
+            return res;
+        }
+        console.log(unique3(arr1));
+
+        // 3. es6语法：es6语法：... + Set - 代码简洁
+        function unique4(arr) {
+            // 将数组转换为集合
+            let set = new Set(arr); 
+            console.log(set); // 输出的是去重后的对象
+            // 将set 展开，创建一个数组
+            let res = [...set];
+            console.log(res);
+            // 简写
+            // return [...new Set(arr)];
+            return res;
+        }
+        unique4(arr);
+
+    </script>
+
+</body>
+</html>
