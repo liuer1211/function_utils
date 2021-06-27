@@ -11,22 +11,117 @@
     <div id="app">clone</div>
     
     <script type="text/javascript" >
-        // 字符串
-        let str = "a"
-        let str1 = str
-        console.log(str1) // a
-        str1 = "b"
-        console.log(str) // a ------不变
+        // // 字符串 - 基本数据类型拷贝不会影响原数据
+        // let str = "a"
+        // let str1 = str
+        // console.log(str1) // a
+        // str1 = "b"
+        // console.log(str) // a ------不变
         
 
-        // 复制对象，只是复制了引用 - 数字也是
-        // 第一个定义 在一个栈里  实际位置在堆里
-        // 第二次定义 在另一个栈里  实际和第一个共用一个堆 
-        let obj = { name: 'jack' };
-        let obj1 = obj;
-        console.log(obj1); // { name: "jack" }
-        obj1.name = 'tom';
-        console.log(obj.name); // tom ------改变
+        // // 复制对象，只是复制了引用 - 数字也是
+        // // 第一个定义 在一个栈里  实际位置在堆里
+        // // 第二次定义 在另一个栈里  实际和第一个共用一个堆 
+        // let obj = { name: 'jack' };
+        // let obj1 = obj;
+        // console.log(obj1); // { name: "jack" }
+        // obj1.name = 'tom';
+        // console.log(obj.name); // tom ------改变
+
+
+        /*
+            拷贝
+            1. 直接赋值 -浅拷贝
+            2.  Object.assign() - 浅拷贝
+            3. Array.prototype.concat() - 浅拷贝
+            4. Array.prototype.slice() - 浅拷贝 - （包含开始位置，不包含结束位置）- 从后往前数，（startindex, -1），-1是最后一个位置；
+            5. JSON.parse(JSON.stringify()) - 深拷贝-深度克隆 -【基本数据类型拷贝不会影响原数据】-【不能拷贝函数】
+        */
+
+        // assign
+        let objAss = {name: "jack"};
+        let objAss1 = Object.assign(objAss);
+        console.log(objAss,objAss1); // {name: "tom"} {name: "tom"}
+
+        objAss.name = 'tom';
+        console.log(objAss,objAss1) // {name: "tom"} {name: "tom"}
+
+
+        // concat
+        let arr = ["a", {name: "jack"}];
+        let arr1 = arr.concat();
+        console.log(arr, arr1) // ["a", {name: "jack"}] ["a", {name: "jack"}]
+
+        arr1[0] = "b"
+        arr1[1].name = "tom"
+        console.log(arr, arr1) // ["a", {name: "tom"}] ["b", {name: "tom"}
+    
+        // concat
+        let sarr = ["a", {name: "sjack"}];
+        let sarr1 = sarr.slice(0, sarr.length);
+        console.log(sarr, sarr1)  // ["a", {name: "sjack"}] ["a", {name: "sjack"}]
+
+        sarr1[0] = "b"
+        sarr1[1].name = "stom"
+        console.log(sarr, sarr1)  // ["a", {name: "stom"}] ["b", {name: "stom"}
+
+        // JSON
+        let jarr = ["a", {name: "haha"}];
+        let jarr1 = JSON.parse(JSON.stringify(jarr))
+        console.log(jarr, jarr1)  // ["a", {name: "haha"}] ["a", {name: "haha"}]
+
+        jarr1[0] = "b"
+        jarr1[1].name = "hihi"
+        console.log(jarr, jarr1)  // ["a", {name: "haha"}] ["b", {name: "hihi"}
+
+
+        // 【数据类型分类】
+        // js中数据类型分为两大类：基本数据类型和引用数据类型
+        // 基本数据类型分为：number、string、boolean、null、undefined
+        // 引用数据类型分为：对象类型、函数，对象类型又分为：Object对象、Array数组、RegExp正则、Date时间对象、Math数学对象
+
+        /*
+            如何判断数据类型： arr - Array; null - Null
+            1. typeof返回数据类型： String, Number, Boolean, Undefined, Object, Function
+            2. Object.prototype.toString.call(obj)
+        */
+
+        let res1 = 'abcd'
+        let res2 = null;
+        let res3 = [1,2];
+
+        console.log(typeof res1) // string
+        console.log(typeof res2) // object
+        console.log(typeof res3) // object
+
+        console.log(Object.prototype.toString.call(res1)); // [object String]
+        console.log(Object.prototype.toString.call(res2)); // [object Null]
+        console.log(Object.prototype.toString.call(res3)); // [object Array]
+
+        console.log(Object.prototype.toString.call(res1).slice(8, -1)); // String
+        console.log(Object.prototype.toString.call(res2).slice(8, -1)); // Null
+        console.log(Object.prototype.toString.call(res3).slice(8, -1)); // Array
+
+        // 枚举对象 key值
+        let object = {name: "jack", age: 23};
+        for(let item in object) {
+            console.log(item);
+        }
+        // 枚举数组 下标
+        let arra = [{name: "jack", age: 23},{name: "jack", age: 23}];
+        for(let i in arra) {
+            console.log(i);
+        }
+
+        // ------------------------------------
+        // 深度克隆方法 - 针对 对象 数组
+        // 1. 判断是什么数据类型 - 进行赋值 - 对象 数组 基本类型
+
+        // 2. 分类赋值
+
+        // 3. 遍历 返回结果
+
+
 
 
 
