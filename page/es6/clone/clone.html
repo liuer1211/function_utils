@@ -116,14 +116,57 @@
         // ------------------------------------
         // 深度克隆方法 - 针对 对象 数组
         // 1. 判断是什么数据类型 - 进行赋值 - 对象 数组 基本类型
+        // 2.1 分类赋值，初始
+        // 2.2 直接返回结果； 数组和对象 遍历返回结果
 
-        // 2. 分类赋值
+        // 深度克隆(复制)
+        function getObjClass(obj) {
+            let result = Object.prototype.toString.call(obj).slice(8, -1);
+            if(result === 'Null'){
+                return 'Null';
+            }else if(result === 'Undefined'){
+                return 'Undefined';
+            }else {
+                return result;
+            }
+        }
 
-        // 3. 遍历 返回结果
+        // 深度克隆
+        function deepClone(obj) {
+            let result, objClass = getObjClass(obj);
+            if(objClass === 'Object'){
+                result = {};
+            }else if(objClass === 'Array'){
+                result = [];
+            }else {
+                return obj; // 如果是其他数据类型不复制，直接将数据返回
+            }
+
+            // 遍历目标对象
+            for(let key in obj){
+                let value = obj[key];
+                if(getObjClass(value) === "Object" || 'Array'){  // 数组或对象中还有嵌套，在进行遍历
+                    result[key] = deepClone(value);
+                }else {
+                    result[key] = obj[key]; // 对象时：key-val  数组时：下标-val
+                }
+            }
+            return result;
+        }
+        
+        let obj3 = {username: 'kobe',age: 39, sex: {option1: '男', option2: '女'}};
+        let obj4 = deepClone(obj3);
+        console.log(obj4);
+        obj4.sex.option1 = '不男不女'; // 修改复制后的对象不会影响原对象
+        console.log(obj4, obj3);
 
 
 
-
+        // for in 遍历数组的时候遍历的是下标
+        let testArr = [1,2,3,4];
+        for(let i in testArr){
+            console.log(i); // 对应的下标索引
+        }
 
     </script>
 
