@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="applicable-device" content="pc,mobile">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2">
+</head>
+<body>
+    <div>
+        some every
+    </div>
+
+    <!-- 直接使用 some every -->
+    <script type="text/javascript" >
+        // some() 方法用于检测数组中的元素是否满足指定条件（函数提供）。
+        // some() 方法会依次执行数组的每个元素：
+        // 如果有一个元素满足条件，则表达式返回true , 剩余的元素不会再执行检测。
+        // 如果没有满足条件的元素，则返回false。
+        // 注意： some() 不会对空数组进行检测。
+        // 注意： some() 不会改变原始数组。
+        // 注意： ie9,+
+
+        // every() 方法用于检测数组所有元素是否都符合指定条件（通过函数提供）。
+        // every() 方法使用指定函数检测数组中的所有元素：
+        // 如果数组中检测到有一个元素不满足，则整个表达式返回 false ，且剩余的元素不会再进行检测。
+        // 如果所有元素都满足条件，则返回 true。
+        // 注意： every() 不会对空数组进行检测。
+        // 注意： every() 不会改变原始数组。
+        // 注意： ie9,+
+
+        const arr = [1,2,3,4]
+        const a1 = arr.some(item => item>0)
+        console.log(a1)
+
+        const arr2 = [1,2,3,4,222]
+        const a2 = arr.every(item => item>10)
+        console.log(a2)
+
+    </script>
+
+    <!-- 自己手写 -->
+    <script type="text/javascript" >
+
+        function every(arr,callback){
+            for(let i=0;i<arr.length;i++) {
+                // 只要有一个为false，那么就返回false
+                if (!callback(arr[i],i)) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        function some(arr,callback){
+            for(let i=0;i<arr.length;i++) {
+                // 只要有一个为true，就返回true
+                if (callback(arr[i],i)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        const f = [4,5,6,8,2]
+        const f1 = every(f,i => i>2)
+        const f2 = some(f,i => i>2)
+
+        console.log(f1)
+        console.log(f2)
+
+    </script>
+
+</body>
+</html>
