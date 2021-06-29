@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="applicable-device" content="pc,mobile">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2">
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <li>test1</li>
+            <li>test2</li>
+        </ul>
+    </div>
+
+    <script type="text/javascript" >
+        // 1. [].slice.call(lis): 将伪数组转换为真数组
+        let arr=[1]
+        console.log(arr.forEach) // ƒ forEach() { [native code] } ---------真数组
+
+        const lis = document.getElementsByTagName('li')
+        console.log(lis instanceof Array) // false
+        console.log(lis[1].innerHTML) // test2
+        console.log(lis.forEach) // undefined --------伪数组
+
+        // call 让一个函数在指定对象上调用
+
+        const lis2 = Array.prototype.slice.call(lis);
+        console.log(lis2 instanceof Array) // false
+        console.log(lis2[1].innerHTML) // test2
+        console.log(lis2.forEach) // ƒ forEach() { [native code] } ---------真数组
+
+
+        // 2. 
+
+        
+    </script>
+</body>
+</html>
