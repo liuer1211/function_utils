@@ -87,4 +87,10 @@
             2.2 直接返回结果； 数组和对象 遍历返回结果
     
 # vue源码分析
-    1.  https://github.com/DMQ/mvvm
+    参考：https://github.com/DMQ/mvvm
+    准备：
+        1. [].slice.call(lis): 将伪数组转换为真数组
+        2. node.nodeType: 得到节点类型
+        3. Object.defineProperty(obj,propertyName,{}) : 给对象定义属性（指定描述符）
+        不兼容ie8,所以vue只支持ie9及以上，（vue的核心语法）
+        4. Object.keys(obj): 得到对象自身可枚举属性组成的数组

@@ -22,6 +22,10 @@
         // 注意: IE 11 及更早版本不支持 findIndex() 方法。
         // indexOf 字符串第一个出现的位置，没有返回-1
 
+        // 1、findIndex()和indexOf方法实现都是通过循环遍历查找。
+        // 2、findIndex()的应用场景要比indexOf广泛一些，可以查找大于等于小于，表达式可以随便写，indexOf就只能在第一层查找相等的值。
+        // 3、findIndex()实际上相当于一个for循环，只不过找到了你不需要自己退出。
+
         const arr = [1,2,3]
         const index = arr.findIndex( i => i === 1 );
         console.log(index)
