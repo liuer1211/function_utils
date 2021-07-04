@@ -94,3 +94,5 @@
         3. Object.defineProperty(obj,propertyName,{}) : 给对象定义属性（指定描述符）
         不兼容ie8,所以vue只支持ie9及以上，（vue的核心语法）
         4. Object.keys(obj): 得到对象自身可枚举属性组成的数组
+        5. obj.hasOwnProperty(prop): 判断prop是否是自身的属性
+        6. DocumentFragment: 文档碎片（高效批量更新多个节点）

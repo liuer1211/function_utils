@@ -11,13 +11,49 @@
     <div id="app">promise</div>
     
     <script type="text/javascript" >
-        // 调接口 过程
-        
+        // // 生成随机数
+        // // ceil() 方法可对一个数进行上舍入。
+        // // random() 方法可返回介于 0 ~ 1 之间的一个随机数。
+        function rand(m, n) {
+            return Math.ceil(Math.random() * (n-m+1)) + m-1;
+        }
+        // function test() {
+        //     setTimeout(()=>{
+        //         let num = rand(1, 100)
+        //         if (num <= 30) {
+        //             alert('恭喜')
+        //         } else {
+        //             alert('再接再厉')
+        //         }
+        //     }, 1000);
+        // }
+        // test();
 
-        // 三种状态
-
-
-        // than
+        // promise 形式 实现
+        // resolve 解决 函数类型的数据
+        // reject 拒绝 函数类型的数据
+        const p = new Promise((res,rej)=>{
+            setTimeout(()=>{
+                // 1到100 随机数
+                let num = rand(1, 100)
+                if (num <= 30) {
+                    res(num); // 将promise 状态设置为成功
+                } else {
+                    rej(num); // 将promise 状态设置为失败
+                }
+            }, 1000);
+        })
+        function test1() {
+            p.then(
+                (num)=>{
+                    alert('恭喜' + num)
+                },
+                (num)=>{
+                    alert('再接再厉' + num)
+                }
+            )
+        }
+        test1();
         
     </script>
 

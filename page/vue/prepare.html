@@ -8,7 +8,9 @@
 </head>
 <body>
     <div id="app">
-        <ul>
+        <ul id="app1">
+            <li>test1</li>
+            <li>test2</li>
             <li>test1</li>
             <li>test2</li>
         </ul>
@@ -33,6 +35,7 @@
         // console.log(lis2.forEach) // ƒ forEach() { [native code] } ---------真数组
 
 
+
         // // 2. node.nodeType: 得到节点类型
         // const elementNode = document.getElementById('test')
         // const attrNode = elementNode.getAttributeNode('id')
@@ -44,47 +47,91 @@
         // // document element attr text
 
 
-        // 3. Object.defineProperty(obj,propertyName,{}) : 给对象定义属性（指定描述符）
-        // 不兼容ie8,所以vue只支持ie9及以上，（vue的核心语法）
-        const obj = {
-            firstName: 'a',
-            lastName: 'b'
+
+        // // 3. Object.defineProperty(obj,propertyName,{}) : 给对象定义属性（指定描述符）
+        // // 不兼容ie8,所以vue只支持ie9及以上，（vue的核心语法）
+        // const obj = {
+        //     firstName: 'a',
+        //     lastName: 'b'
+        // }
+        // // 给obj添加fullName属性
+        // // obj.fullName = 'a-b'
+        // /*
+        // 1. 数据描述符
+        //     configurable: 是否可以重新定义 默认为 false。
+        //     enumerable: 是否可以枚举 默认为 false。
+        //     value: 初始值 默认为 undefined。
+        //     writable: 是否可以修改属性 默认为 false。
+        // 2. 访问描述符
+        //     get: 回调函数，根据其他相关属性动态计算得到当前属性
+        //     set：回调函数，监听当前属性值的变化，更新其他相关属性
+        // */
+        // Object.defineProperty(obj, 'fullName', {
+        //         get() {
+        //             return this.firstName+ '-' +this.lastName
+        //         },
+        //         set(value) {
+        //             const names = value.split('-')
+        //             this.firstName = names[0]
+        //             this.lastName = names[1]
+        //         },
+        //         // enumerable: true, // 可枚举  Object.keys(obj) 返回则有这个 ["firstName", "lastName", "fullName"]
+        // })
+        // console.log(obj.fullName) // a-b
+        // obj.firstName = 'c'
+        // obj.lastName = 'd'
+        // console.log(obj.fullName) // c-d
+
+        // obj.fullName = '7-8'
+        // console.log(obj.firstName, obj.lastName); // 7 8
+
+
+
+        // // 4. Object.keys(obj): 得到对象自身可枚举属性组成的数组
+        // const names = Object.keys(obj);
+        // console.log(names) // ["firstName", "lastName"]
+
+
+
+        // // 5. obj.hasOwnProperty(prop): 判断prop是否是自身的属性
+        // const obj = {
+        //     name: "haha"
+        // }
+
+        // let flag = obj.hasOwnProperty("name");
+        // console.log(flag)
+        // let flag1 = obj.hasOwnProperty("age");
+        // console.log(flag1)
+
+
+
+
+        // 6. DocumentFragment: 文档碎片（高效批量更新多个节点）
+        //    document: 对应显示的页面，包含n个elment,一旦更新 document内部的某个元素更新
+        //    documentFragment: 内部中保存n个element的容器对象（不与界面关联），
+        //    如果更新framgnet中的某个element,界面不变
+
+        //     <ul id="app1">
+        //         <li>test1</li>
+        //         <li>test2</li>
+        //     </ul>
+
+        const ul = document.getElementById('app1')
+        // 1. 创建fragment
+        const fragment = document.createDocumentFragment()
+        // 2. 取出ul中所有子节点 保存到fragment
+        let child
+        while (child = ul.firstChild) { // 一个节点只有一个父亲
+            fragment.appendChild(child) // 先将child从ul中移除，添加为fragment的子节点
         }
-        // 给obj添加fullName属性
-        // obj.fullName = 'a-b'
-        /*
-        1. 数据描述符
-            configurable: 是否可以重新定义 默认为 false。
-            enumerable: 是否可以枚举 默认为 false。
-            value: 初始值 默认为 undefined。
-            writable: 是否可以修改属性 默认为 false。
-        2. 访问描述符
-            get: 回调函数，根据其他相关属性动态计算得到当前属性
-            set：回调函数，监听当前属性值的变化，更新其他相关属性
-        */
-       Object.defineProperty(obj, 'fullName', {
-            get() {
-                return this.firstName+ '-' +this.lastName
-            },
-            set(value) {
-                const names = value.split('-')
-                this.firstName = names[0]
-                this.lastName = names[1]
-            },
-            // enumerable: true, // 可枚举  Object.keys(obj) 返回则有这个 ["firstName", "lastName", "fullName"]
-       })
-       console.log(obj.fullName) // a-b
-       obj.firstName = 'c'
-       obj.lastName = 'd'
-       console.log(obj.fullName) // c-d
-
-       obj.fullName = '7-8'
-       console.log(obj.firstName, obj.lastName); // 7 8
-
-
-        // 4. Object.keys(obj): 得到对象自身可枚举属性组成的数组
-        const names = Object.keys(obj);
-        console.log(names) // ["firstName", "lastName"]
+        // 3. 更新fragment中所有li的文本
+        Array.prototype.slice.call(fragment.childNodes).forEach(node=>{
+            if(node.nodeType === 1) { // 元素节点<li>
+                node.textContent = 'hihi'
+            }
+        })
+        // 4. 将fragment插入ul
+        ul.appendChild(fragment)
 
         
     </script>
