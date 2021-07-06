@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="applicable-device" content="pc,mobile">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2">
+</head>
+<body>
+
+    <div id="app">promise  xhr</div>
+    
+    <script type="text/javascript" >
+        const p = new Promise((res,rej)=>{
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET','https://api.apiopen.top/getJoke')
+            xhr.send()
+            xhr.onreadystatechange = function(){
+                if (xhr.readyState === 4){
+                    if (xhr.status>=200 && xhr.status<300){
+                        res(xhr.response);
+                    } else{
+                        rej(xhr.status)
+                    }
+                }
+            }
+        })
+        p.then((data)=>{
+            console.log(data)
+        },(err)=>{
+            console.warn(err)
+        })
+        
+    </script>
+
+</body>
+</html>

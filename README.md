@@ -86,6 +86,18 @@
             2.1 分类赋值，初始
             2.2 直接返回结果； 数组和对象 遍历返回结果
     
+    6.  Promise
+        Promise 的状态
+            实例对象中的一个属性 『PromiseState』
+            * pending  未决定的
+            * resolved / fullfilled  成功
+            * rejected  失败
+        Promise 对象的值
+            实例对象中的另一个属性 『PromiseResult』
+            保存着异步任务『成功/失败』的结果
+            * resolve
+            * reject 
+    
 # vue源码分析
     参考：https://github.com/DMQ/mvvm
     准备：
