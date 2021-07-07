@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="applicable-device" content="pc,mobile">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2">
+</head>
+<body>
+
+    基本使用
+    <div id="app">
+        <div class="but">发送get请求</div>
+        <div class="but">发送post请求</div>
+        <div class="but">发送put请求</div>
+        <div class="but">发送delete请求</div>
+    </div>
+    
+    <script type="text/javascript" >
+        // https://github.com/axios/axios  // axios
+        // https://github.com/typicode/json-server // 模拟服务器
+        // 1. 全局安装npm install -g json-server
+        // 2. 创建文件夹 创建db.json文件
+        // 3. 启动服务json-server --watch db.json
+        // ------ 启动后 ------
+        // http://localhost:3000/posts
+        // http://localhost:3000/comments
+        // http://localhost:3000/profile
+    </script>
+
+    <!-- <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.min.js"></script> -->
+    <script src="js/axios.js"></script>
+    <script>
+        // console.log(axios)
+    </script>
+
+    <!-- 使用 -->
+    <script>
+        let but = document.querySelectorAll('.but')
+
+        // 1. get 查询
+        but[0].onclick = ()=>{
+            axios({
+                method: 'GET',
+                url: 'http://localhost:3000/posts'
+            }).then( res=>{
+                console.log(res)
+            })
+        }
+
+        // 2. post 添加
+        but[1].onclick = ()=>{
+            axios({
+                method: 'POST',
+                url: 'http://localhost:3000/posts',
+                data: {
+                    "title": "哈哈", 
+                    "author": "JACK"
+                }
+            }).then( res=>{
+                console.log(res)
+            })
+        }
+
+        // 3. put 更新
+        but[2].onclick = ()=>{
+            axios({
+                method: 'put',
+                url: 'http://localhost:3000/posts/3',
+                data: {
+                    "title": "hihi", 
+                    "author": "tom"
+                }
+            }).then( res=>{
+                console.log(res)
+            })
+        }
+
+        // 3. delete 删除
+        but[3].onclick = ()=>{
+            axios({
+                method: 'delete',
+                url: 'http://localhost:3000/posts/3',
+                data: {
+                    "title": "hihi", 
+                    "author": "tom"
+                }
+            }).then( res=>{
+                console.log(res)
+            })
+        }
+
+
+    </script>
+
+</body>
+</html>

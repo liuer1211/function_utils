@@ -33,5 +33,44 @@
         
     </script>
 
+    <script>
+        //定义一个请求news的方法
+        function getNews(url) {
+            //创建一个promise对象
+            let promise = new Promise((resolve, reject) => {
+                //初始化promise状态为pending
+                //启动异步任务
+                let request = new XMLHttpRequest();
+                request.onreadystatechange = function () {
+                    if(request.readyState === 4){
+                        if(request.status === 200){
+                            let news = request.response;
+                            resolve(news);
+                        }else{
+                            reject('请求失败了。。。');
+                        }
+                    }
+                };
+                request.responseType = 'json';//设置返回的数据类型
+                request.open("GET", url);//规定请求的方法，创建链接
+                request.send();//发送
+            })
+            return promise;
+        }
+
+        getNews('http://localhost:3000/news?id=2')
+            .then((news) => {
+                console.log(news);
+                return getNews('http://localhost:3000' + news.commentsUrl);
+            }, (error) => {
+                alert(error);
+            })
+            .then((comments) => {
+                console.log(comments);
+            }, (error) => {
+                alert(error);
+            })
+    </script>
+
 </body>
 </html>

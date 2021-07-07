@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="applicable-device" content="pc,mobile">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2">
+</head>
+<body>
+
+    基本使用
+    <div id="app">
+        <div class="but">发送get请求</div>
+        <div class="but">发送post请求</div>
+    </div>
+    
+    <script src="js/axios.js"></script>
+    
+
+    <!-- 使用 -->
+    <script>
+        let but = document.querySelectorAll('.but')
+
+         //发送 GET 请求
+         but[0].onclick = function(){
+            // axios()
+            axios.request({
+                method:'GET',
+                url: 'http://localhost:3000/comments'
+            }).then(response => {
+                console.log(response);
+            })
+        }
+
+        //发送 POST 请求
+        but[1].onclick = function(){
+            // axios()
+            axios.post(
+                'http://localhost:3000/comments', 
+                {
+                    "body": "喜大普奔",
+                    "postId": 2
+                }).then(response => {
+                    console.log(response);
+                })
+        }
+
+
+    </script>
+
+</body>
+</html>

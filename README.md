@@ -97,6 +97,22 @@
             保存着异步任务『成功/失败』的结果
             * resolve
             * reject 
+        方法    then
+                catch
+                resolve
+                reject
+                all
+                race
+    7.  axios
+        // https://github.com/axios/axios  // axios
+        // https://github.com/typicode/json-server // 模拟服务器
+        // 1. 全局安装npm install -g json-server
+        // 2. 创建文件夹 创建db.json文件
+        // 3. 启动服务json-server --watch db.json
+        // ------ 启动后 ------
+        // http://localhost:3000/posts
+        // http://localhost:3000/comments
+        // http://localhost:3000/profile
     
 # vue源码分析
     参考：https://github.com/DMQ/mvvm
