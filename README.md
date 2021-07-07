@@ -103,6 +103,7 @@
                 reject
                 all
                 race
+
     7.  axios
         // https://github.com/axios/axios  // axios
         // https://github.com/typicode/json-server // 模拟服务器
@@ -124,3 +125,9 @@
         4. Object.keys(obj): 得到对象自身可枚举属性组成的数组
         5. obj.hasOwnProperty(prop): 判断prop是否是自身的属性
         6. DocumentFragment: 文档碎片（高效批量更新多个节点）
+
+# webpack 前端资源构建工具，静态模块打包器
+
+
+# less 
+
