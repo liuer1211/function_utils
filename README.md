@@ -147,6 +147,23 @@
     4.  打包css/less
 
 
+# javaScript
+    1.  基本（值）类型
+            String 任意字符串
+            Number 任意数字
+            boolean true/false
+            undefined undefined
+            null null
+        对象（引用）类型
+            Object 任意对象
+            Function 一种特别的对象（可执行）
+            Array 一种特别的对象（书值下标，内部数据是有序的）
+
+        判断
+            typeof 可以判断： undefined 数值 字符串 布尔值 function
+                    不能判断：null-object  object-array
+            instanceof 判断对象的 具体类型
+            === / ==  (不会数据转换/会数据转换) 可判断：undefined null
 
 
 # less 
