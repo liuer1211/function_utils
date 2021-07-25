@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="applicable-device" content="pc,mobile">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2">
+</head>
+<body>
+
+    基本使用
+    
+    <script src="js/axios.js"></script>
+    
+
+    <!-- 使用 -->
+    <script>
+        // 创建实例
+        const duanzi = axios.create({
+            baseURL: 'https://api.apiopen.top',
+            timeout: 3000
+        });
+
+        duanzi({
+            url: '/getJoke',
+        }).then(res=>{
+            console.log(res)
+        })
+
+        const duanzi1 = axios.create({
+            baseURL: 'https://api.apiopen.top',
+            timeout: 3000
+        });
+         
+        duanzi1.get('/getJoke').then(res=>{
+            console.log(res.data)
+        })
+
+
+    </script>
+
+</body>
+</html>
