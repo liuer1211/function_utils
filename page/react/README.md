@@ -1,0 +1,3 @@
+redux 是一个独立专门用于状态管理的js库（不是react插件库）
+react-redux 是react插件库 简化react中使用redux
+redux-thunk 是redux的插件，做异步应用   action不仅可以有对象，也能执行函数
