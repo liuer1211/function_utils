@@ -126,6 +126,8 @@
         5. obj.hasOwnProperty(prop): 判断prop是否是自身的属性
         6. DocumentFragment: 文档碎片（高效批量更新多个节点）
 
+        1.双向数据绑定基于单向数据绑定，监听input改变，然后更新model
+
 # react
     
     redux 是一个独立专门用于状态管理的js库（不是react插件库）
