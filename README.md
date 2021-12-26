@@ -198,3 +198,48 @@
         extend
     4. 运算
 
+# 封装npm包
+    下载webpack创建项目
+        npm init -y  初始项目
+        npm i webpack webpack-cli  下载依赖包
+    配置webpack
+        创建 webpack.config.js
+    配置打包命令
+        "build:watch": "webpack --watch"
+    打包
+        npm run build:watch
+        会有配置的dist 文件夹输出，然后进行测试
+    测试
+        定义测试包
+        引入包
+        调用全局暴露出来的对象，使用其方法
+    发布到npm中央仓库
+        完善package,json
+            name: 唯一的名称
+            main: 指定打包生成的js文件
+            keywords: 指定方便搜索的关键字
+        npm配置
+            npm配置的中央仓库不能是淘宝镜像(它是只读的)
+            发布前必须执行：npm config set registry https://registry.npmjs.org/
+            不用发布时：npm config set registry https://registry.npm.taobao.org/
+            查看配置：npm config list
+        添加用户
+            执行：npm addUser  /  npm login
+            登录npm 仓库
+            依次输入用户名、密码、邮箱
+            上传：npm publish
+        下载自己的npm包
+            npm install npm-web-utils
+            测试：<script src="../node_modules/npm-web-utils/dist/web-utils.js"></script>
+        升级
+            修改项目库的版本号："version": "1.0.0" =>  "version": "1.0.1",  版本号变大
+            修改代码后重新打包：npm run build
+            执行发布：npm publish
+        删除
+            执行：npm unpublish --force
+            注意：必须在72小时内，否则不能删除
+    注册npm中央仓库
+        注册地址：https://www.npmjs.com/
+        关键信息：用户名、密码、邮箱（需要验证激活）
+    
+
