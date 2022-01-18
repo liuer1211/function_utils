@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="applicable-device" content="pc,mobile">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2">
+</head>
+<body>
+  <!-- 定义属性，赋值 -->
+  <script>
+    // let obj ={}
+    // Object.defineProperty(obj, 'name', {
+    //   value: 'aa'
+    // })
+    // console.log(obj.name) // 1
+
+    // obj.age = 23
+    // console.log(obj)
+  </script>
+
+  <!-- 数据劫持 -->
+  <script>
+    // let obj ={}
+    // Object.defineProperty(obj, 'a', {
+    //   // getter
+    //   get() {
+    //     console.log('试图访问属性')
+    //     return 1;
+    //   },
+    //   // setter
+    //   set(newValue) {
+    //     console.log('试图改变属性')
+    //   }
+    // })
+    // console.log(obj.a) // 1
+    // obj.a = 2
+    // console.log(obj.a) // 1
+  </script>
+
+  <!-- 数据代理 -->
+  <script>
+    // let obj ={};
+    // // 临时变量
+    // let temp;
+    // Object.defineProperty(obj, 'a', {
+    //   // getter
+    //   get() {
+    //     console.log('试图访问属性')
+    //     return temp;
+    //   },
+    //   // setter
+    //   set(newValue) {
+    //     console.log('试图改变属性')
+    //     temp = newValue;
+    //   }
+    // })
+    // console.log(obj.a) // undefined
+    // obj.a = 2
+    // console.log(obj.a) // 2
+  </script>
+
+  <!-- 闭包封装 -->
+  <script>
+    // let obj={}
+    // // data 变量； key键； value值
+    // function defineReactive(data, key, value){ // 闭包替代临时变量
+    //   Object.defineProperty(data, key, {
+    //     // 可以被枚举,默认是false
+    //     enumerable: true,
+    //     // 可以被配置，默认是false，例如delete
+    //     configurable: true,
+    //     // getter
+    //     get() {
+    //       console.log('试图访问属性',key)
+    //       return value;
+    //     },
+    //     // setter
+    //     set(newValue) {
+    //       console.log('试图改变属性',key)
+    //       value = newValue;
+    //     }
+    //   })
+    // }
+    // defineReactive(obj, 'a', 12)
+    // console.log(obj)
+    // obj.a--
+    // console.log(obj.a)
+  </script>
+
+  <!-- 数据监听，观察者模式 将object每个层级都变成可监听的-->
+  
+</body>
+</html>
