@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="./index.js"></script>
+  </head>
+  <body>
+    promise
+    <script>
+
+      /*
+      1. 必备函数
+        resolve
+        reject
+      2. 更改状态 结果
+        this.PromiseState = 'pending';
+        this.PromiseResult =  null;
+      3. 异常处理
+        try{
+          executor(resolve,reject)
+        }catch(e){
+          reject(e)
+        }
+      4. 确保状态只执行一次
+        if(self.PromiseState!=='pending') return;
+      5. then 方法执行回调
+      6. 异步then  存回调函数
+      */
+
+      let p = new Promise((resolve,reject)=>{
+        // resolve('ok')
+        // reject('no')
+        // throw 'error'
+        setTimeout(()=>{
+          resolve('ok')
+        },1000)
+      })
+      p.then(value=>{
+        console.log(value)
+      },reason=>{
+        console.log(reason)
+      })
+
+      console.log(p)
+    </script>
+  </body>
+</html>
